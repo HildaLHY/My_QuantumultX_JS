@@ -119,6 +119,7 @@ if(resStatus !== 200) {
                     $done({});
                 } else {
                     console.log('翻译成功');
+                    console.log('翻译成功后 colorLyricsResponseObj.lyrics.lines 的值为：', colorLyricsResponseObj.lyrics.lines);
                     // 因为采用了批量翻译,如果歌词为多种语言,只会翻译其中的一种语言
                     const transArr = baiduResult.trans_result.filter(trans => trans.src !== trans.dst)
                         .map(trans => [trans.src, trans.dst]);
@@ -126,8 +127,9 @@ if(resStatus !== 200) {
                     colorLyricsResponseObj.lyrics.alternatives = [{
                         "language" : "z1",
                         "lines" : colorLyricsResponseObj.lyrics.lines.map(line => line.words)
-                            .map(word => (transMap.get(word) || word || '') + ' ♪')
+                            .map(word => (transMap.get(word) || word || '') + 'HILDA')
                     }];
+                    console.log('HIlda colorLyricsResponseObj.lyrics.lines 的值为：', colorLyricsResponseObj.lyrics.lines);
                     // 构造新数据
                     const body = ColorLyricsResponse.toBinary(colorLyricsResponseObj);
                     if(isQX){
