@@ -125,11 +125,8 @@ if(resStatus !== 200) {
                     const transMap = new Map(transArr);
                     colorLyricsResponseObj.lyrics.alternatives = [{
                         "language" : "z1",
-                        "lines" : [
-                            "HILDA-OHHHHHHH", // 添加这一行
-                            ...colorLyricsResponseObj.lyrics.lines.map(line => line.words)
-                                .map(word => transMap.get(word) || word || '')
-                        ]
+                        "lines" : colorLyricsResponseObj.lyrics.lines.map(line => line.words)
+                            .map(word => (transMap.get(word) || word || '') + ' ♪')
                     }];
                     // 构造新数据
                     const body = ColorLyricsResponse.toBinary(colorLyricsResponseObj);
