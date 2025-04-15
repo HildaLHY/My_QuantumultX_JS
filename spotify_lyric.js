@@ -118,7 +118,7 @@ if(resStatus !== 200) {
                     }
                     $done({});
                 } else {
-                    console.log('翻译成功');
+                    console.log('翻译成功ok');
                     console.log('翻译成功后 colorLyricsResponseObj.lyrics.lines 的值为：', colorLyricsResponseObj.lyrics.lines);
                     // 因为采用了批量翻译,如果歌词为多种语言,只会翻译其中的一种语言
                     const transArr = baiduResult.trans_result.filter(trans => trans.src !== trans.dst)
